@@ -1,41 +1,17 @@
+import React, { useState } from 'react';
 import QuestionData from './Tandem.json';
+import Question from "./components/Answers";
+
 
 function App() {
-
-  // const qArray = QuestionData.splice(0,10);
-  // console.log(qArray)
-
-  // function getRandomIntInclusive(min, max) {
-  //   min = Math.ceil(min);
-  //   max = Math.floor(max);
-  //   return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive 
-  // }
-
-  // const rand = getRandomIntInclusive(0,9)
-
+  //Picks a random item from array of questions 
   const item = QuestionData[Math.floor(Math.random() * QuestionData.length)];
+  //Manages question selected in a state  
+  const [question, updateQuestion] = useState({...item});
 
-  // console.log(QuestionData, item)
-  
   return (
     <div className="App">
-      <h1>
-        {item.question}
-      </h1>
-      <button>
-        {item.correct}
-      </button>
-      
-        {item.incorrect.map((el)=> {
-          return (
-            <button>
-              {el}
-            </button>
-          )
-        })}
-        
-      
-      
+        <Question question={question}></Question>
     </div>
   );
 }
