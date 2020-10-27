@@ -1,23 +1,59 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Answers = (props) => {
-    console.log(props)
+    // console.log(props)
     const [questionNum, updateQuestionNum] = useState(0);
-    let handleClickNext = () => {
-        updateQuestionNum((n) => n + 1)
-      }
-    let handleClickPrevious = () => {
-        updateQuestionNum((n) => n - 1)
-      }
+    // let item = props.question[questionNum]
+    // console.log(item)
+    // const [checker, updatechecker] = useState(props.question[questionNum]);
 
-    let item = props.question[questionNum]
-    console.log(item)
+    // useEffect(() => {
+    //     console.log('render')       
+    // },[questionNum])
+    
+    // const handleClickNext = (e) => {
+    //     if(questionNum<9) {
+    //     updateQuestionNum((n) => n + 1)
+    //     updatechecker((n) => props.question[questionNum]);
+    //     } else {
+    //         e.preventDefault();
+    //     }
+    // };
+    
+    // const handleClickPrevious = (e) => {
+    //     if(questionNum>0) {
+    //     updateQuestionNum((n) => n - 1)
+    //     updatechecker(props.question[questionNum]);
+    //     } else {
+    //         e.preventDefault();
+    //     }
+    // };
+    
+    const handleCheck = (event) => {
+        // event.preventDefault();
+            if (event.target.outerText===props.question[questionNum].correct) {     
+                updateQuestionNum((n) => n + 1)
+                alert("wow")
 
-    //Question's Answers are now saved in a variable called displayAnswer
-    const displayAnswer = `${item.correct},,${item.incorrect[0]},,${item.incorrect[1]},,${item.incorrect[2]}`
-    console.log(displayAnswer)
+            // updatechecker(props.question[props.question[questionNum]]);
+            } else {
+                updateQuestionNum((n) => n + 1)
+                alert("no")
+
+            // updatechecker(props.question[props.question[questionNum]]);
+            }
+        
+    };
+
+    const correctAnswer = props.question[questionNum].correct
+    const incorrectAnswer = props.question[questionNum].incorrect.map(c => {
+        return c
+    })
+    let updatedAnswer = incorrectAnswer.join("*");
+    const displayAnswer = `${correctAnswer}*${updatedAnswer}`
+
     //Answers are combined into an array.
-    const arrayAnswer =  Array.from(displayAnswer.split(',,'))
+    const arrayAnswer =  Array.from(displayAnswer.split('*'))
 
     //Array of answers is now reshuffled
     //https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
@@ -30,21 +66,21 @@ const Answers = (props) => {
     return (
         <div>
             <h1>
-                {item.question}
+                {props.question[questionNum].question}
             </h1>
             {shuffled.map((el,idx)=> {
                     return (
                         <div>
-                            <button key={idx}>
+                            <button onClick={handleCheck} key={idx}>
                                  {el}
                             </button>
                         </div>
             )
              })}
              <br/>
-            <button onClick={handleClickNext}>Next</button>
-            <h2>Question Number {questionNum+1}</h2>
-            <button onClick={handleClickPrevious}>Previous</button>
+            {/* <button onClick={handleClickPrevious}>Previous</button>
+            <button onClick={handleClickNext}>Next</button> */}
+            {/* <h2>Question Number {props.question[questionNum]+1}</h2> */}
 
         </div>
     );
