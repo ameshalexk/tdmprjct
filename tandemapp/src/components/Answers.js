@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useState } from 'react';
 
 const Answers = (props) => {
-    //Question's Answers are now saved in a variable called displayAnswer
-    const displayAnswer = props.question.correct + ',' + props.question.incorrect
+    console.log(props)
+    const [questionNum, updateQuestionNum] = useState(0);
+    let handleClick = () => {
+        updateQuestionNum((n) => n + 1)
+      }
 
+    let item = props.question[questionNum]
+    console.log(item)
+
+    //Question's Answers are now saved in a variable called displayAnswer
+    const displayAnswer = `${item.correct},,${item.incorrect[0]},,${item.incorrect[1]},,${item.incorrect[2]}`
+    console.log(displayAnswer)
     //Answers are combined into an array.
-    const arrayAnswer =  Array.from(displayAnswer.split(','))
+    const arrayAnswer =  Array.from(displayAnswer.split(',,'))
 
     //Array of answers is now reshuffled
     //https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
@@ -18,17 +27,21 @@ const Answers = (props) => {
     return (
         <div>
             <h1>
-                {props.question.question}
+                {item.question}
             </h1>
-            
             {shuffled.map((el,idx)=> {
                     return (
-            <button key={idx}>
-              {el}
-            </button>
+                        <div>
+                            <button key={idx}>
+                                 {el}
+                            </button>
+                        </div>
             )
              })}
-            
+             <br/>
+            <button onClick={handleClick}>Next</button>
+            <h2>Question Number {questionNum+1}</h2>
+
         </div>
     );
 };
