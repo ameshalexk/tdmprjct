@@ -12,10 +12,10 @@ const shuffled = QuestionData.sort(() => 0.5 - Math.random()).slice(0, 10);
   const [question, updateQuestion] = useState(shuffled);
   // console.log(shuffled)
   
-  const handleSubmit = event => {
-    event.preventDefault();
+  // const handleSubmit = event => {
+  //   event.preventDefault();
     
-  };
+  // };
 
   // let changeNum = () => {
   //   updateQuestionNum((n) => n + 1);

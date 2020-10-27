@@ -3,8 +3,11 @@ import React, { useState } from 'react';
 const Answers = (props) => {
     console.log(props)
     const [questionNum, updateQuestionNum] = useState(0);
-    let handleClick = () => {
+    let handleClickNext = () => {
         updateQuestionNum((n) => n + 1)
+      }
+    let handleClickPrevious = () => {
+        updateQuestionNum((n) => n - 1)
       }
 
     let item = props.question[questionNum]
@@ -39,8 +42,9 @@ const Answers = (props) => {
             )
              })}
              <br/>
-            <button onClick={handleClick}>Next</button>
+            <button onClick={handleClickNext}>Next</button>
             <h2>Question Number {questionNum+1}</h2>
+            <button onClick={handleClickPrevious}>Previous</button>
 
         </div>
     );
