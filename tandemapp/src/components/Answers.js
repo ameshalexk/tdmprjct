@@ -7,32 +7,8 @@ const Answers = (props) => {
 
     //Manages question's score  in state  
     const [score, updateScore] = useState(1);
-    // let item = props.question[questionNum]
-    // console.log(item)
-    // const [checker, updatechecker] = useState(props.question[questionNum]);
-
-    // useEffect(() => {
-    //     console.log('render')       
-    // },[questionNum])
     
-    // const handleClickNext = (e) => {
-    //     if(questionNum<9) {
-    //     updateQuestionNum((n) => n + 1)
-    //     updatechecker((n) => props.question[questionNum]);
-    //     } else {
-    //         e.preventDefault();
-    //     }
-    // };
-    
-    // const handleClickPrevious = (e) => {
-    //     if(questionNum>0) {
-    //     updateQuestionNum((n) => n - 1)
-    //     updatechecker(props.question[questionNum]);
-    //     } else {
-    //         e.preventDefault();
-    //     }
-    // };
-    
+    //Function to render questions in sequence and update score.
     const handleCheck = (event) => {
         console.log(questionNum)
         if(questionNum<9) {
@@ -40,29 +16,33 @@ const Answers = (props) => {
                 updateQuestionNum((n) => n + 1)
                 updateScore((n) => n + 1)
                 console.log(score)
-                alert("wow")
-
-            // updatechecker(props.question[props.question[questionNum]]);
+                alert("Correct Answer")
             } else {
                 updateQuestionNum((n) => n + 1)
-                alert("no")
-
-            // updatechecker(props.question[props.question[questionNum]]);
+                alert(`Incorrect Answer the corrrect answer was ${props.question[questionNum].correct}`)
             }
         } else {
-            alert(`Your score is ${score}`)
+            //Once the question sequence is finished the score is displayed and page reloaded.
+            alert(`Your score is ${score} points`)
             window.location.reload();
         }
     };
 
+    //Stores the correct answer from question
     const correctAnswer = props.question[questionNum].correct
+
+    //Stores the incorrect answer from question
     const incorrectAnswer = props.question[questionNum].incorrect.map(c => {
         return c
     })
+
+    // Joins the correct answer and the incorrect answer
     let updatedAnswer = incorrectAnswer.join("*");
+
+    //Cobines the correct answer and the incorrect answer in a variable using * symbol
     const displayAnswer = `${correctAnswer}*${updatedAnswer}`
 
-    //Answers are combined into an array.
+    //Answers are combined into an array as items by splitting using * symbol
     const arrayAnswer =  Array.from(displayAnswer.split('*'))
 
     //Array of answers is now reshuffled
@@ -72,7 +52,7 @@ const Answers = (props) => {
     .sort((a, b) => a.sort - b.sort)
     .map((a) => a.value)
 
-    //Component Question now renders the question and the answers in random order
+    //Below Component now renders the question and the answers in random order
     return (
         <div>
             <h1>
@@ -90,7 +70,7 @@ const Answers = (props) => {
              <br/>
             {/* <button onClick={handleClickPrevious}>Previous</button>
             <button onClick={handleClickNext}>Next</button> */}
-            {/* <h2>Question Number {props.question[questionNum]+1}</h2> */}
+            <h2>Question Number {questionNum + 1}</h2>
 
         </div>
     );
