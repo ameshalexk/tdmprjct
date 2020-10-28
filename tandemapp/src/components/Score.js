@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function QNumber(props) {
+export default function Score(props) {
 	// console.log(props)
 	return (
 		<div>

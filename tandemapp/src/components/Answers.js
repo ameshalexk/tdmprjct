@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 const Answers = (props) => {
     // console.log(props)
     const [questionNum, updateQuestionNum] = useState(0);
+    const [score, updateScore] = useState(1);
     // let item = props.question[questionNum]
     // console.log(item)
     // const [checker, updatechecker] = useState(props.question[questionNum]);
@@ -30,9 +31,12 @@ const Answers = (props) => {
     // };
     
     const handleCheck = (event) => {
-        // event.preventDefault();
+        console.log(questionNum)
+        if(questionNum<9) {
             if (event.target.outerText===props.question[questionNum].correct) {     
                 updateQuestionNum((n) => n + 1)
+                updateScore((n) => n + 1)
+                console.log(score)
                 alert("wow")
 
             // updatechecker(props.question[props.question[questionNum]]);
@@ -42,7 +46,10 @@ const Answers = (props) => {
 
             // updatechecker(props.question[props.question[questionNum]]);
             }
-        
+        } else {
+            alert(`Your score is ${score}`)
+            window.location.reload();
+        }
     };
 
     const correctAnswer = props.question[questionNum].correct
