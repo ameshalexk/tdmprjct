@@ -4,35 +4,16 @@ import Question from "./components/Answers";
 import Score from "./components/Score";
 
 function App() {
+  //Shuffle questions imported from JSON file and use slice to save first 10 questions.
   // https://stackoverflow.com/questions/19269545/how-to-get-a-number-of-random-elements-from-an-array
 const shuffled = QuestionData.sort(() => 0.5 - Math.random()).slice(0, 10);
-// const item = selected[Math.floor(Math.random()*selected.length)];
 
   //Manages question selected in a state  
   const [question, updateQuestion] = useState(shuffled);
-  // console.log(shuffled)
-  
-  // const handleSubmit = event => {
-  //   event.preventDefault();
-    
-  // };
-
-  // let changeNum = () => {
-  //   updateQuestionNum((n) => n + 1);
-  //   console.log(questionNum)
-  // }
-
-  
-  
-  // useEffect(() => {
-  //   console.log(questionNum)
-  // }, [questionNum]);
-
   
   return (
     <div className="App">
         <Question question={question}></Question>
-        <Score  ></Score>
     </div>
   );
 }

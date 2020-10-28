@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
 const Answers = (props) => {
-    // console.log(props)
+
+    //Manages question's number / sequence in state  
     const [questionNum, updateQuestionNum] = useState(0);
+
+    //Manages question's score  in state  
     const [score, updateScore] = useState(1);
     // let item = props.question[questionNum]
     // console.log(item)
