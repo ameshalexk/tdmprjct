@@ -8,7 +8,9 @@ const Answers = (props) => {
 
     //Manages question's score  in state  
     const [score, updateScore] = useState(1);
+
     
+
     //Function to render questions in sequence and update score.
     const handleCheck = (event) => {
         console.log(questionNum)
@@ -69,8 +71,6 @@ const Answers = (props) => {
             )
              })}
              <br/>
-            {/* <button onClick={handleClickPrevious}>Previous</button>
-            <button onClick={handleClickNext}>Next</button> */}
             <h2>Question Number {questionNum + 1}</h2>
 
         </div>
