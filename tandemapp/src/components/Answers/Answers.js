@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import './Answers.css';
 
 const Answers = (props) => {
 
@@ -15,15 +16,15 @@ const Answers = (props) => {
             if (event.target.outerText===props.question[questionNum].correct) {     
                 updateQuestionNum((n) => n + 1)
                 updateScore((n) => n + 1)
-                console.log(score)
                 alert("Correct Answer")
             } else {
                 updateQuestionNum((n) => n + 1)
                 alert(`Incorrect Answer the corrrect answer was ${props.question[questionNum].correct}`)
             }
-        } else {
+        } else if (questionNum === 9){
+            event.target.outerText===props.question[questionNum].correct ? alert("Correct Answer") : alert(`Incorrect Answer the corrrect answer was ${props.question[questionNum].correct}`);
             //Once the question sequence is finished the score is displayed and page reloaded.
-            alert(`Your score is ${score} points`)
+            alert(`Your final score is ${score} points. Click OK to restart the game`)
             window.location.reload();
         }
     };
@@ -54,14 +55,14 @@ const Answers = (props) => {
 
     //Below Component now renders the question and the answers in random order
     return (
-        <div>
+        <div className="container">
             <h1>
                 {props.question[questionNum].question}
             </h1>
             {shuffled.map((el,idx)=> {
                     return (
-                        <div>
-                            <button onClick={handleCheck} key={idx}>
+                        <div className="options">
+                            <button className="answerbox" onClick={handleCheck} key={idx}>
                                  {el}
                             </button>
                         </div>

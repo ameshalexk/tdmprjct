@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import QuestionData from './Tandem.json';
-import Question from "./components/Answers";
-import Score from "./components/Score";
+import Question from "./components/Answers/Answers";
 
 function App() {
   //Shuffle questions imported from JSON file and use slice to save first 10 questions.
