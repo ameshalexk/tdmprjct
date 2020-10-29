@@ -1,7 +1,7 @@
 # 
 Web App built using REACT
 
-App deployed live - 
+App deployed live - https://tandemapp2.herokuapp.com/
 
 
 
